@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pridať ponuku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form input,
+        .form textarea,
+        .form button {
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #45a049;
+        }
+
+        .options {
+            margin-top: 20px;
+        }
+
+        .options a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .options a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/add-offer" method="post" class="form">
+            <h2>Pridať ponuku</h2>
+            <input type="text" name="title" placeholder="Názov ponuky" required>
+            <textarea name="description" placeholder="Popis ponuky" rows="5" required></textarea>
+            <input type="number" name="price" placeholder="Cena (EUR)" required>
+            <input type="text" name="category" placeholder="Kategória">
+            <button type="submit">Pridať ponuku</button>
+            <div class="options">
+                <a href="/">Domovská stránka</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

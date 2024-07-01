@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registrácia</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Optional: Light background for better visibility */
+        }
+        .register-container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: white; /* Optional: White background for the form container */
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0; /* Remove the top margin for the heading */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: calc(100% - 20px); /* Adjusted width to include padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensure padding doesn't affect total width */
+        }
+        input[type="submit"] {
+            width: calc(100% - 20px); /* Adjusted width to include padding */
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            margin: 5px 0;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Registrácia</h2>
+        <form action="/register" method="post">
+            <label for="firstname">Meno:</label><br>
+            <input type="text" id="firstname" name="firstname" required><br>
+            <label for="lastname">Priezvisko:</label><br>
+            <input type="text" id="lastname" name="lastname" required><br>
+            <label for="birthdate">Dátum narodenia:</label><br>
+            <input type="date" id="birthdate" name="birthdate" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Heslo:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <label for="confirm_password">Potvrďte heslo:</label><br>
+            <input type="password" id="confirm_password" name="confirm_password" required><br>
+            <input type="submit" value="Registrovať sa"><br>
+        </form>
+        <a href="/login">Späť na prihlásenie</a>
+    </div>
+</body>
+</html>

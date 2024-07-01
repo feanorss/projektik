@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoznam ponúk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .filter-form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-form select,
+        .filter-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .offers-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .offer-item {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .offer-item h3 {
+            margin-top: 0;
+        }
+
+        .offer-item p {
+            margin-bottom: 5px;
+        }
+
+        .user-rating {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .user-rating a {
+            color: #007BFF;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .review-list {
+            margin-top: 10px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .review-item {
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .review-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zoznam ponúk</h1>
+
+        <form action="/filter-offers" method="get" class="filter-form">
+            <select name="category">
+                <option value="">Všetky kategórie</option>
+                <option value="hudba">Hudba</option>
+                <option value="šport">Šport</option>
+                <option value="jazyky">Jazyky</option>
+                <!-- Doplniť ďalšie kategórie podľa potreby -->
+            </select>
+            <input type="text" name="search" placeholder="Vyhľadávanie...">
+            <button type="submit">Filtrovať / Vyhľadať</button>
+        </form>
+
+        <ul class="offers-list">
+            <li class="offer-item">
+                <h3>Ponuka 1</h3>
+                <p>Popis ponuky 1.</p>
+                <p>Cena: 30 EUR</p>
+                <p>Kategória: Hudba</p>
+                <p>Ponúkajúci: <a href="#" class="user-link" data-user="john_doe">John Doe</a></p>
+                <div class="user-rating" id="rating_john_doe">
+                    Hodnotenie: 4.5 (25 hodnotení)
+                    <a href="#" class="rate-user-link" data-user="john_doe">Hodnotiť</a>
+                </div>
+                <div class="review-list" id="reviews_john_doe" style="display: none;">
+                    <h4>Slovné hodnotenia:</h4>
+                    <!-- Dynamické zobrazenie slovných hodnotení -->
+                </div>
+            </li>
+            <li class="offer-item">
+                <h3>Ponuka 2</h3>
+                <p>Popis ponuky 2.</p>
+                <p>Cena: 20 EUR</p>
+                <p>Kategória: Šport</p>
+                <p>Ponúkajúci: <a href="#" class="user-link" data-user="jane_smith">Jane Smith</a></p>
+                <div class="user-rating" id="rating_jane_smith">
+                    Hodnotenie: 4.2 (15 hodnotení)
+                    <a href="#" class="rate-user-link" data-user="jane_smith">Hodnotiť</a>
+                </div>
+                <div class="review-list" id="reviews_jane_smith" style="display: none;">
+                    <h4>Slovné hodnotenia:</h4>
+                    <!-- Dynamické zobrazenie slovných hodnotení -->
+                </div>
+            </li>
+            <!-- Ďalšie ponuky -->
+        </ul>
+
+        <div class="options">
+            <a href="/">Domovská stránka</a>
+        </div>
+    </div>
+
+    <script>
+        // Simulácia JavaScript pre spracovanie kliknutí na hodnotenie a zobrazenie slovných hodnotení
+        document.addEventListener('DOMContentLoaded', function() {
+            // Akcia pre kliknutie na odkaz "Hodnotiť používateľa"
+            document.querySelectorAll('.rate-user-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let user = this.getAttribute('data-user');
+                    let rating = prompt(`Hodnotenie používateľa ${user} (1-5):`);
+                    if (rating && !isNaN(parseFloat(rating)) && isFinite(rating)) {
+                        alert(`Vaše hodnotenie pre používateľa ${user}: ${rating}`);
+                        // Tu by ste mali odoslať hodnotenie na server a aktualizovať zobrazenie hodnotenia
+                        // Napríklad, môžete posielať AJAX požiadavku na server.
+                    } else {
+                        alert('Neplatné hodnotenie. Zadajte číslo od 1 do 5.');
+                    }
+                });
+            });
+
+            // Akcia pre kliknutie na odkaz na zobrazenie slovných hodnotení
+            document.querySelectorAll('.user-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let user = this.getAttribute('data-user');
+                    let reviewsDiv = document.getElementById(`reviews_${user}`);
+                    reviewsDiv.style.display = reviewsDiv.style.display === 'none' ? 'block' : 'none';
+                    // Tu by ste mali načítať slovné hodnotenia z databázy alebo iného úložiska a zobraziť ich v div-e `reviewsDiv`.
+                    // Pre účely tohto príkladu sa len zobrazí a skryje prázdny div.
+                });
+            });
+        });
+    </script>
+</body>
+</html>
